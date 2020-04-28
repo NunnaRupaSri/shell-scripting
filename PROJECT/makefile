@@ -1,6 +1,6 @@
 .ONESHELL:
 .SHELL := /usr/bin/bash
-.PHONY: pull all mongodb
+.PHONY: all mongodb
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[35m%-10s\033[0m %s\n", $$1, $$2}'
@@ -40,6 +40,3 @@ shipping: pull ## Install Catalogue Application
 
 web: pull ## Install Catalogue Application
 	@sh PROJECT.sh web
-
-
-
