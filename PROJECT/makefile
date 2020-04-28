@@ -24,6 +24,9 @@ mysql: pull ## Install MySQL for Application
 redis: pull ## Install Redis for Application
 	@sh PROJECT.sh redis
 
+nodejs: Pull ## Install Nodejs for Application
+	@sh PROJECT.sh nodejs
+
 catalogue: pull ## Install Catalogue Application
 	@sh PROJECT.sh catalogue
 
