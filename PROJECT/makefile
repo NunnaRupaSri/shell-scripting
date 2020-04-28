@@ -1,6 +1,6 @@
 .ONESHELL:
 .SHELL := /usr/bin/bash
-.PHONY: all mongodb
+.PHONY: pull all mongodb
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[35m%-10s\033[0m %s\n", $$1, $$2}'
