@@ -4,36 +4,37 @@
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[35m%-10s\033[0m %s\n", $$1, $$2}'
-
-all:  ## Install all Components of Application
+pull:
+	@git pull &>/dev/null
+all: pull ## Install all Components of Application
 	@sh PROJECT.sh all
 
 debug:
 	@sh -x PROJECT.sh all
 
-mongodb:  ## Install MongoDB for Application
+mongodb: pull ## Install MongoDB for Application
 	@sh PROJECT.sh mongodb
 
-rabbitmq:  ## Install RabbitMQ for Application
+rabbitmq: pull ## Install RabbitMQ for Application
 	@sh PROJECT.sh rabbitmq
 
-mysql:  ## Install MySQL for Application
+mysql: pull ## Install MySQL for Application
 	@sh PROJECT.sh mysql
 
-redis: ## Install Redis for Application
+redis: pull ## Install Redis for Application
 	@sh PROJECT.sh redis
 
-catalogue:  ## Install Catalogue Application
+catalogue: pull ## Install Catalogue Application
 	@sh PROJECT.sh catalogue
 
-user:  ## Install Catalogue Application
+user: pull ## Install Catalogue Application
 	@sh PROJECT.sh user
 
-cart:  ## Install Catalogue Application
+cart: pull ## Install Catalogue Application
 	@sh PROJECT.sh cart
 
-shipping:  ## Install Catalogue Application
+shipping: pull ## Install Catalogue Application
 	@sh PROJECT.sh shipping
 
-web: ## Install Catalogue Application
+web: pull ## Install Catalogue Application
 	@sh PROJECT.sh web
