@@ -214,6 +214,7 @@ redis) Redis_F ;;
 nodejs) NodeJS_F ;;
 catalogue) Catalogue_App_F ;;
 user) User_App_F ;;
+cart) Cart_App_F ;;
 shipping) Shipping_App_F ;;
 web) Web_App_F ;;
 all)
@@ -224,6 +225,7 @@ all)
   NodeJS_F
   Catalogue_App_F
   User_App_F
+  Cart_App_F
   Shipping_App_F
   Web_App_F
   ;;
