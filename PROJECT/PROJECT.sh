@@ -19,10 +19,10 @@ Print() {
 Stat() {
   case $1 in
   0)
-    echo -e " ==>\e[31m $program_name \e[0m: \e[32m $2  Sucess \e[0m"
+    echo -e " ==>\e[31m $program_name \e[0m: \e[32m $2 is Sucess \e[0m"
     ;;
   *)
-    echo -e " ==> \e[31m $program_name \e[0m: \e[31m $2 Failed \e[0m"
+    echo -e " ==> \e[31m $program_name \e[0m: \e[31m $2 is Failed \e[0m"
     echo -e "\n Check the log file for errors :: LOG-FILE = $LOG"
     ;;
   esac
