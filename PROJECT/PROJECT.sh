@@ -109,6 +109,14 @@ Reset_App_F() {
     cp -r /tmp/robo-shop/$program_name .
     Stat $? "Copied $program_name application"
 }
+Reset_App_F() {
+    systemctl stop $program_name &>>/dev/null
+    Print $program_name "Setup $program_name Application"
+    cd $APP_ROOT_DIR
+    rm -rf $program_name
+    cp -r /tmp/robo-shop/$program_name .
+    Stat $? "Copied $program_name application"
+}
 
 NodeJS_APP_Install_Dep_F() {
     Print $program_name "Install Dependencies for $program_name Application"
@@ -126,16 +134,9 @@ Setup_Systemd_F() {
 
 Start_Service_Systemd_F() {
     Print $program_name "Starting $program_name"
-    systemctl enable  $program_name &>>$LOG
+    systemctl enable $program_name &>>$LOG
     systemctl start $program_name &>>$LOG
     Stat $? "Starting $program_name Service"
-}
-
-NodeJS_APP_Setup_F() {
-    Reset_App_F
-    NodeJS_APP_Install_Dep_F
-    Setup_Systemd_F
-    Start_Service_Systemd_F
 }
 
 Catalogue_App_F() {
