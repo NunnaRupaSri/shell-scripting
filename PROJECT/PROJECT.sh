@@ -207,10 +207,12 @@ Web_App_F() {
 
 #Main Program
 TMP_ROOT=/tmp/robo-shop
+
+
 if [ ! -d $TMP_ROOT ]; then
     cd /tmp
-    git clone https://rkb03:password@gitlab.com/d45/robo-shop.git
-  else
+    git clone https://rkb03:password@gitlab.com/d45/robo-shop.git &>>$LOG
+else
     cd $TMP_ROOT
     git pull &>>$LOG
 fi
