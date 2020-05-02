@@ -87,6 +87,7 @@ Redis_F() {
 }
 
 
+
 NodeJS_F() {
     Head "NodeJS Setup"
     program_name=NodeJS
@@ -98,6 +99,7 @@ NodeJS_F() {
         Stat $? "Installation of $program_name"
     fi
 }
+
 
 Reset_App_F() {
     systemctl stop $program_name &>>/dev/null
