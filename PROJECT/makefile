@@ -5,7 +5,8 @@
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[35m%-10s\033[0m %s\n", $$1, $$2}'
 pull:
-	@git pull &>/dev/null
+	@git pull &>/dev/nul
+
 all: pull ## Install all Components of Application
 	@sh PROJECT.sh all
 
@@ -24,7 +25,7 @@ mysql: pull ## Install MySQL for Application
 redis: pull ## Install Redis for Application
 	@sh PROJECT.sh redis
 
-nodejs: Pull ## Install Nodejs for Application
+nodejs: pull ## Install Nodejs for Application
 	@sh PROJECT.sh nodejs
 
 catalogue: pull ## Install Catalogue Application
