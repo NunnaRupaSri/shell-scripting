@@ -208,12 +208,13 @@ Web_App_F() {
 #Main Program
 TMP_ROOT=/tmp/robo-shop
 if [ ! -d $TMP_ROOT ]; then
-      cd /tmp
-      git clone https://rkb03:password@gitlab.com/d45/robo-shop.git &>>$LOG
+    cd /tmp
+    git clone https://rkb03:password@gitlab.com/d45/robo-shop.git
   else
-      cd $TMP_ROOT
-     git pull &>>$LOG
+    cd $TMP_ROOT
+    git pull &>>$LOG
 fi
+
 
 APP_ROOT_DIR=/root/ROBO-SHOP
 mkdir -p $APP_ROOT_DIR
