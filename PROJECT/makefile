@@ -1,6 +1,6 @@
 .ONESHELL:
 .SHELL := /usr/bin/bash
-.PHONY: all mongodb
+.PHONY: help pull all debug mongodb rabbitmq mysql redis nodejs cart user shipping web
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[35m%-10s\033[0m %s\n", $$1, $$2}'
