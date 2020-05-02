@@ -126,7 +126,7 @@ Setup_Systemd_F() {
 
 Start_Service_Systemd_F() {
     Print $program_name "Starting $program_name"
-    systemctl enable $program_name &>>$LOG
+    systemctl enable  $program_name &>>$LOG
     systemctl start $program_name &>>$LOG
     Stat $? "Starting $program_name Service"
 }
@@ -198,13 +198,19 @@ Web_App_F() {
 
 
 #Main Program
-if [ ! -d /tmp/robo-shop ]; then
-  cd /tmp
-  git clone https://rkb03:password@gitlab.com/d45/robo-shop.git
+TMP_ROOT=/tmp/robo-shop
+if [ ! -d $TMP_ROOT ]; then
+    cd /tmp
+    git clone https://rkb03:password@gitlab.com/d45/robo-shop.git &>>$LOG
 else
-  cd /tmp/robo-shop
-  git pull &>>$LOG
+    cd $TMP_ROOT
+    git pull &>>$LOG
 fi
+
+APP_ROOT_DIR=/root/ROBO-SHOP
+mkdir -p $APP_ROOT_DIR
+mkdir -p /var/log/robo-shop
+
 
 APP_ROOT_DIR=/root/ROBO-SHOP
 mkdir -p /root/ROBO-SHOP
