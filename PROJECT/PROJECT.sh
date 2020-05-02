@@ -218,7 +218,7 @@ else
 fi
 
 
-APP_ROOT_DIR=/root/robo-shop
+APP_ROOT_DIR=/root/ROBO-SHOP
 mkdir -p $APP_ROOT_DIR
 mkdir -p /var/log/robo-shop
 
