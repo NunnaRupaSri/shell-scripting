@@ -203,6 +203,68 @@ Web_App_F() {
     Stat $? "Starting $program_name Service"
 }
 
+Web_App_F() {
+    Head "Web Service Setup"
+    program_name=nginx
+    systemctl stop $program_name &>>/dev/null
+    Print $program_name "Install $program_name"
+    yum install nginx -y &>>$LOG
+    Stat $? "Installing $program_name"
+    rm -rf /usr/share/nginx/html/*
+    cp -r $TMP_ROOT/web/static/*  /usr/share/nginx/html/.
+    Print $program_name "Start Service $program_name"
+    systemctl enable $program_name &>>$LOG
+    systemctl start $program_name &>>$LOG
+    Stat $? "Starting $program_name Service"
+}
+
+Payment_App_F() {
+    Head "Payment App Setup"
+    program_name=payment
+    Reset_App_F
+    Print $program_name "Install Python3 for $program_name App"
+    yum install python36 gcc python3-devel -y &>>$LOG
+    Stat $? "Installing Python3 for $program_name App"
+    Print $program_name "Install Dependencies for $program_name App"
+    cd $APP_ROOT_DIR/payment
+    pip3 install -r requirements.txt &>>$LOG
+    Stat $? "Installing Dependencies for $program_name App"
+    Setup_Systemd_F
+}
+
+Dispatch_App_F() {
+    Head "Dispatch App Setup"
+    program_name=dispatch
+    Reset_App_F
+    Print $program_name "Download $program_name App"
+    curl -o $APP_ROOT_DIR/dispatch/gorcv https://robo-shop.s3.amazonaws.com/APPLICATION/dispatch/gorcv &>>$LOG
+    Stat $? "Downloading $program_name App"
+    chmod +x $APP_ROOT_DIR/dispatch/gorcv
+    Setup_Systemd_F
+}
+
+Ratings_App_F() {
+    Head "Ratings App Setup"
+    program_name=ratings
+    Print $program_name "Install Apache Web Server with Php 7"
+    curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/httpd-php/install-php7.sh | bash &>>$LOG
+    Stat $? "Installing Apache with PHP"
+    Reset_App_F
+    Print $program_name "Configuring Apache web Server"
+    sed -i -e '/^Listen/ c Listen 8000' /etc/httpd/conf/httpd.conf
+    cd $APP_ROOT_DIR/ratings
+    cp status.conf /etc/httpd/conf.d/
+    cd html
+    rm -rf /var/www/html/*
+    cp * /var/www/html/.
+    cd /var/www/html/
+    composer install &>>$LOG
+    Print $program_name "Start Httpd Service for $program_name"
+    systemctl enable httpd &>>$LOG
+    systemctl restart httpd &>>$LOG
+    Stat $? "Starting Httpd Service for $program_name"
+
+}
 
 
 #Main Program
@@ -236,8 +298,10 @@ user) User_App_F ;;
 cart) Cart_App_F ;;
 shipping) Shipping_App_F ;;
 web) Web_App_F ;;
+payment) Payment_App_F ;;
+dispatch) Dispatch_App_F ;;
+rating) Ratings_App_F ;;
 all)
-  MongoDB_F
   RabbitMQ_F
   MySQL_F
   Redis_F
@@ -247,6 +311,9 @@ all)
   Cart_App_F
   Shipping_App_F
   Web_App_F
+  Payment_App_F
+  Dispatch_App_F
+  Ratings_App_F
   ;;
 esac
 

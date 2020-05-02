@@ -42,3 +42,12 @@ shipping: pull ## Install Catalogue Application
 
 web: pull ## Install Catalogue Application
 	@sh PROJECT.sh web
+
+payment: pull ## Install Payment Application
+	@sh PROJECT.sh payment
+
+dispatch: pull ## Install Dispatch Application
+	@sh PROJECT.sh dispatch
+
+rating: pull ## Install Rating Application
+	@sh PROJECT.sh rating
