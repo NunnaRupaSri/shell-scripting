@@ -11,5 +11,5 @@ while [ $value -gt 0 ]; do
   done | rev
   echo
   value=$(($value-1))
-  rev
+
 done
