@@ -9,6 +9,6 @@ while [ $value -gt 0 ]; do
   while [ $j -lt $i ]; do
     echo -n "$j  "
         i=$(($j+1))
-  done|
+  done
   value=$(($value-1))
 done|tac
