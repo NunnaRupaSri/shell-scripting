@@ -8,7 +8,7 @@ while [ $value -gt 0 ]; do
   while [ $i -gt 0 ]; do
     echo -n  "$i  "
         i=$(($i-1))
-  done
+  done |rev
   echo
   value=$(($value-1))
 done
