@@ -6,7 +6,7 @@ read -p 'Enter the value : ' value
 while [ $value -gt 0 ]; do
  i=$value
  j=1
-  while [ $j -lt $i ]; do
+  while [ $j -le $i ]; do
     echo -n "$j  "
         j=$(($j+1))
   done
