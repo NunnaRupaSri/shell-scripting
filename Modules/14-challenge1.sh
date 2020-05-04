@@ -10,5 +10,6 @@ while [ $value -gt 0 ]; do
     echo -n "$j  "
         j=$(($j+1))
   done
+  echo
   value=$(($value-1))
 done|tac
