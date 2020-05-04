@@ -5,7 +5,7 @@ read -p 'Enter the value : ' value
 while [ $value -gt 0 ]; do
  i=$value
   while [ $i -gt 0 ]; do
-    echo -n "$i"
+    echo -n \t "$i"
         i=$(($i-1))
   done
   value=$(($value-1))
