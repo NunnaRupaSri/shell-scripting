@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 useradd test
-journalctl
+journalctl -l|grep http |grep jan
