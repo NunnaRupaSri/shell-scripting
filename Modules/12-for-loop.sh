@@ -3,6 +3,6 @@
 ITEMS="shipping user cart"
 
 for items in $ITEMS ; do
-  echo "Restarting service $ITEMS"
+  echo "Restarting service $ITEM"
   systemctl restart $item
 done
