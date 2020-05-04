@@ -2,9 +2,9 @@
 
 read -p 'Enter the value : ' value
 
-while [ $value -le 0 ]; do
+while [ $value -le 5 ]; do
  i=$value
-  while [ $i -le 0 ]; do
+  while [ $i -le 5 ]; do
     echo -n  "$i  "
         i=$(($i+1))
   done
